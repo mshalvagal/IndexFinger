@@ -7,6 +7,9 @@ Created on Tue Jun 21 17:44:51 2016
 import numpy as np
 from sklearn.neighbors import KNeighborsRegressor
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+startTime = datetime.now()
 
 fileTrain = open("fingerDataTrain.dat",'r')
 fileVal = open("fingerDataVal.dat",'r')
@@ -26,7 +29,7 @@ for i in range(trainX.shape[1]):
     trainX[:,i] = (trainX[:,i]-m)/s
     valX[:,i] = (valX[:,i]-m)/s
 
-bestk = 5;
+bestk = 10;
 
 neigh = KNeighborsRegressor(bestk)
 neigh.fit(trainX,trainY)
@@ -34,3 +37,5 @@ sqError = ((neigh.predict(valX)-valY)**2).mean()
 
 plt.scatter(valX[:,1], valY[:,3],  color='black')
 plt.plot(valX[:,1], neigh.predict(valX)[:,3], color='blue', linewidth=3)
+
+print datetime.now() - startTime

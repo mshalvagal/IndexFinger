@@ -8,6 +8,9 @@ Created on Tue Jun 28 10:41:02 2016
 from sklearn.tree import DecisionTreeRegressor
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+startTime = datetime.now()
 
 fileTrain = open("fingerDataTrain.dat",'r')
 fileVal = open("fingerDataVal.dat",'r')
@@ -23,7 +26,9 @@ valY = valSet[:,14:]
 
 tree = DecisionTreeRegressor()
 tree.fit(trainX,trainY)
-sqError = ((tree.predict(valX)-valY)**2).mean()
+sqErrorTree = ((tree.predict(valX)-valY)**2).mean()
 
 plt.scatter(valX[:,1], valY[:,3],  color='black')
 plt.plot(valX[:,1], tree.predict(valX)[:,3], color='blue', linewidth=3)
+
+print datetime.now() - startTime

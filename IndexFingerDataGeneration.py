@@ -57,12 +57,12 @@ for q in Q:
         count = count + 1
     else:
         continue
-    fMuscle = random.sample(Fmuscle,500)
+    fMuscle = random.sample(Fmuscle,50)
     H = np.dot(np.transpose(R),J)
     Fend = np.dot(fMuscle,H)
-    np.savetxt(fileTrain,np.hstack((np.tile(L,[np.size(fMuscle[:400],axis=0),1]),fMuscle[:400],Fend[:400])),fmt = '%2.3g')
-    np.savetxt(fileVal,np.hstack((np.tile(L,[np.size(fMuscle[401:450],axis=0),1]),fMuscle[401:450],Fend[401:450])),fmt = '%2.3g')
-    np.savetxt(fileTest,np.hstack((np.tile(L,[np.size(fMuscle[451:],axis=0),1]),fMuscle[451:],Fend[451:])),fmt = '%2.3g')
+    np.savetxt(fileTrain,np.hstack((np.tile(L,[np.size(fMuscle[:40],axis=0),1]),fMuscle[:40],Fend[:40])),fmt = '%2.3g')
+    np.savetxt(fileVal,np.hstack((np.tile(L,[np.size(fMuscle[41:45],axis=0),1]),fMuscle[41:45],Fend[41:45])),fmt = '%2.3g')
+    np.savetxt(fileTest,np.hstack((np.tile(L,[np.size(fMuscle[46:],axis=0),1]),fMuscle[46:],Fend[46:])),fmt = '%2.3g')
 
 fileTrain.close()
 fileVal.close()
